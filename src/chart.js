@@ -1,14 +1,21 @@
-const React = require("react");
-const ReactDOM = require("react-dom");
+import React from "react";
 
-const ReactHighstock = require("react-highcharts/ReactHighstock"); // Expects that Highcharts was loaded in the code.
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
 
-const config = {
-  /* HighchartsConfig */
+const options = {
+  title: {
+    text: "My chart",
+  },
+  series: [
+    {
+      data: [1, 2, 3],
+    },
+  ],
 };
-ReactDOM.render(<ReactHighstock config={config}></ReactHighstock>, document.body);
+
 const Chart = () => {
-  return <div></div>;
+  return <HighchartsReact highcharts={Highcharts} options={options} />;
 };
 
 export default Chart;
