@@ -3,10 +3,10 @@ import { Range, getTrackBackground } from 'react-range';
 
 const STEP = 1;
 const MIN = 1;
-const MAX = 12;
 
-const LabeledTwoThumbs = ({ rtl, cta }) => {
-  const [values, setValues] = React.useState([1,12 ]);
+
+const LabeledTwoThumbs = ({ rtl, cta, options, MAX }) => {
+  const [values, setValues] = React.useState([1,MAX ]);
   return (
     <div
       style={{
@@ -24,7 +24,7 @@ const LabeledTwoThumbs = ({ rtl, cta }) => {
         onChange={(values) => {
 
             setValues(values)
-            cta(values)
+            cta(values, options)
         }}
         renderTrack={({ props, children }) => (
           <div
