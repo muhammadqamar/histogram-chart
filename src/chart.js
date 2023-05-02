@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -82,13 +82,14 @@ const options = {
         49.9, 71.5, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,
         49.9, 49.9, 71.5, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6,
         54.4, 49.9,
-      ],
+      ].map(update=>{  return {y: update, color: 'rgb(93 137 222)',opacity: '1'} }),
     },
   ],
 };
 
 const Chart = () => {
-  const [valuesOption, setValuesOption] = useState();
+  const [valuesOption, setValuesOption] = useState(options);
+
   return (
     <div
       style={{ padding: '100px 250px', maxWidth: '600px', margin: '0 auto' }}
@@ -110,11 +111,14 @@ const Chart = () => {
                 return {
                   ...data1,
                   data: data1.data.map((val, index) => {
+
                     if (index >= data[0] - 1 && index <= data[1] - 1) {
-                      return { y: val, color: 'rgb(93 137 222)' };
+                      console.log(index,data[0] - 1, data[1] - 1)
+
+                      return { y: val.y, color: 'rgb(93 137 222)',opacity: '1', };
                     } else {
                       return {
-                        y: val,
+                        y: val.y,
                         color: 'rgb(93 137 222)',
                         opacity: '.3',
                       };
